@@ -37,14 +37,19 @@ void print_array(int *arr, int len) {
 int main() {
 	int arr[ARR_LENGTH] = {0};
     //scanning and inserting the input to the array
-    for(int i = 0; i < ARR_LENGTH; i++){
-        char scan = 0;
-        if( scanf("%c" , &scan) != 1 ){
-            printf("error while scanning");
-        }
-        //convert char to int according to ASCII table
-        *(arr + i) = scan - '0';
-    }
+    int	count = 0;
+    do {
+        // Take input
+        // and increment count
+        scanf("%d", &arr[count++]);
+        // If '\n' (newline) or '\t' (tab) or ' ' (space) has occurred
+        // or the whole array is filled,
+        // then exit the loop
+        // Otherwise, continue
+    } while (getchar() != '\t' && getchar() != ' ' && getchar() != '\n'&& count < ARR_LENGTH);
+
+
+
     //int arr[50] = {0,2,41,52,74,64,984,19,21,14,409,50,91,7444,67,7232,5322,6,24,7,6,5,2,90,49,9,8,5232313,89,9,8,4,5,6,7,60,2,1,20,1234,5,6,9,8,6,477,12,2,13,124};
 	//sorting the array
 	insertion_sort(arr, ARR_LENGTH);
