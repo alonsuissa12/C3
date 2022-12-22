@@ -8,12 +8,12 @@ void shift_element(int* arr, int i){
 
   // נשמור משתנה עבור האיבר "הבא " במערך
 int a = *arr , b = *(arr+1);
-
    for (int j = 1 ; j <= i ; j++){
         // את התוכן שבמקום שקיבלנו+1 נשנה לתוכן של הקודם לו
         *(arr+j) = a;
         a = b;
-        b=*(arr+j+1) ;
+       if(j+1 < sizeof(arr))  
+            b=*(arr+j+1) ;
    }
 }
 
@@ -30,13 +30,18 @@ void MY_shift_element(int *arr , int *i) {
 }
 
 void insertion_sort(int* arr , int len){
-    
-    int *last = arr + len;
-    int *i;
-    for (i = arr + 1; i < last  ; i++ ){
-         if (*i < *(i-1))
-            MY_shift_element(arr ,i);    
-    }
+     int i;
+     for (i = 0; i < len  ; i++ ){
+        int current = *(arr+i);
+        printf("current: %d \n" ,current );
+          print_array(&arr[0], len);
+        int j = 0;
+          while (*(arr) < current && j < i){
+            j++;
+          }
+            shift_element(arr+j, i-j);
+            *(arr+j) = current; 
+     }
 
 }
 void print_array(int *arr, int len) {
@@ -51,9 +56,10 @@ void print_array(int *arr, int len) {
 int main() {
 	
 	int arr[6] = {99, 78, -1, 42, 12};
-	int n = sizeof(arr)/sizeof(int);
+	int n = sizeof(arr)/sizeof(arr[0]);
 
-	print_array(&arr[0], n);
+// shift_element (arr , 3);
+	// print_array(&arr[0], n);
 	
 	insertion_sort(&arr[0], n);
 	
