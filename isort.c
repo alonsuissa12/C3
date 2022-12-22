@@ -5,9 +5,10 @@
 #include "isort.h"
 
 void shift_element(int* arr, int i){
+
   // נשמור משתנה עבור האיבר "הבא " במערך
 int a = *arr , b = *(arr+1);
-//   int *temp = arr;
+
    for (int j = 1 ; j <= i ; j++){
         // את התוכן שבמקום שקיבלנו+1 נשנה לתוכן של הקודם לו
         *(arr+j) = a;
@@ -49,7 +50,7 @@ void print_array(int *arr, int len) {
 }
 int main() {
 	
-	int arr[5] = {99, 78, -1, 42, 12};
+	int arr[6] = {99, 78, -1, 42, 12};
 	int n = sizeof(arr)/sizeof(int);
 
 	print_array(&arr[0], n);
