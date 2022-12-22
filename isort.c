@@ -17,26 +17,12 @@ int a = *arr , b = *(arr+1);
    }
 }
 
-//  בשביל המיון נממש פונקצית עזר נוספת
-// הפונקציה תקבל מצביע לתחילת המערך ומצביע למיקום במערך
-// וכל עוד הערך במיקום קטן מהערך לפניו היא תדחוף אותו אחורה במערך 
-void MY_shift_element(int *arr , int *i) {
-     int ival;
-         for  ( ival = *i ; ival < *(i-1) && i > arr; i--)
-            {  
-            *i = *(i-1);
-           }
-           *i = ival;
-}
-
 void insertion_sort(int* arr , int len){
      int i;
      for (i = 0; i < len  ; i++ ){
         int current = *(arr+i);
-        printf("current: %d \n" ,current );
-          print_array(&arr[0], len);
         int j = 0;
-          while (*(arr) < current && j < i){
+          while (*(arr+j) < current && j < i){
             j++;
           }
             shift_element(arr+j, i-j);
@@ -58,8 +44,6 @@ int main() {
 	int arr[6] = {99, 78, -1, 42, 12};
 	int n = sizeof(arr)/sizeof(arr[0]);
 
-// shift_element (arr , 3);
-	// print_array(&arr[0], n);
 	
 	insertion_sort(&arr[0], n);
 	
