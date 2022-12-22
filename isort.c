@@ -5,19 +5,14 @@
 #include "isort.h"
 
 void shift_element(int* arr, int i){
-
-  // נשמור משתנה עבור האיבר "הבא " במערך
-int a = *arr , b = *(arr+1);
-   for (int j = 1 ; j <= i ; j++){
-        // את התוכן שבמקום שקיבלנו+1 נשנה לתוכן של הקודם לו
-        *(arr+j) = a;
-        a = b;
-       if(j+1 < sizeof(arr))  
-            b=*(arr+j+1) ;
-   }
+    i--;
+    while ( i >= 0){
+        *(arr + i + 1) = *(arr + i);
+        i--;
+    }
 }
 
-void insertion_sort(int* arr , int len){
+void insertion_sort(int *arr , int len){
      int i;
      for (i = 0; i < len  ; i++ ){
         int current = *(arr+i);
@@ -26,7 +21,7 @@ void insertion_sort(int* arr , int len){
             j++;
           }
             shift_element(arr+j, i-j);
-            *(arr+j) = current; 
+            *(arr+j) = current;
      }
 
 }
@@ -40,14 +35,21 @@ void print_array(int *arr, int len) {
 	printf("\n");
 }
 int main() {
-	
-	int arr[6] = {99, 78, -1, 42, 12};
-	int n = sizeof(arr)/sizeof(arr[0]);
+	int arr[ARR_LENGTH] = {0};
+    //scanning and inserting the input to the array
+    for(int i = 0; i < ARR_LENGTH; i++){
+        char scan = 0;
+        if( scanf("%c" , &scan) != 1 ){
+            printf("error while scanning");
+        }
+        //convert char to int according to ASCII table
+        *(arr + i) = scan - '0';
+    }
+    //int arr[50] = {0,2,41,52,74,64,984,19,21,14,409,50,91,7444,67,7232,5322,6,24,7,6,5,2,90,49,9,8,5232313,89,9,8,4,5,6,7,60,2,1,20,1234,5,6,9,8,6,477,12,2,13,124};
+	//sorting the array
+	insertion_sort(arr, ARR_LENGTH);
 
-	
-	insertion_sort(&arr[0], n);
-	
-	print_array(&arr[0], n);
+	print_array(&arr[0], ARR_LENGTH);
    
     return 1;
 
