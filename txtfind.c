@@ -33,28 +33,37 @@ int substring(char *str1, char *str2, int start1, int start2, int end1 , int end
     return 0;
 
 }
-int getword(char* w){
-    // char w[WORD] ={0};
+
+//getting the next word from the buffer, starting from 'index'
+int getword(char* buffer , int *index , char* w){
     int count = 0;
-    char scan = ' ';
+    char c = buffer[*index];
+
+//    while (c == ' ' || c == '\t' || c == '\n'){
+//        (*index)++;
+//        c = *(buffer + (*index));
+//    }
+
     do {
-        scanf("%c",&scan);
-        *(w + count) = scan;
+        c = buffer[*index];
+        w[count] = c;
+        (*index)++;
         count++;
-    } while ( scan != ' ' && scan != '\t' && scan != '\n' && count < WORD);
-    w[count - 1] = '\0';
+    } while ( c != ' ' && c != '\t' && c != '\n' && count < WORD);
+    w[count -1] = '\0';
     return count;
 }
 
-int getLine(char *s){
+int getLine(char *buffer , int * index, char *line){
  int count = 0;
-    char scan = ' ';
+    char c = ' ';
     do {
-        scanf("%c",&scan);
-        *(s+count) = scan;
+        c = *( buffer + (*index) );
+        *(line + count) = c;
+        (*index)++;
         count++;
-    } while (  scan != '\n' && count < LINE);
-    s[count - 1] = '\0';
+    } while (  c != '\n' && count < LINE);
+    line[count] = '\0';
     return count;
 }
 
@@ -84,25 +93,72 @@ int similar (char * s, char* t, int n){
     }
     return 0;
 }
+int isWordInLine(char * line, char* word){
+    char tempWord[WORD];
+    int lineIndex = 0;
+    int wordIndex;
+    while(line[lineIndex] != '\n' && line[lineIndex] != '\0'){
+        while(line[lineIndex] != ' ' && line[lineIndex] != '\n' && line[lineIndex] != '\0') {
+            tempWord[wordIndex] = line[lineIndex];
+            lineIndex++;
+            wordIndex++;
+            }
+        tempWord[wordIndex] = '\0';
+        if( similar(word , tempWord,0) == 1){
+            return 1;
+        }
 
-    int main(){
-    //   char arr[WORD];
-        char s[LINE];
-    //    char *s1 = s[0];
-    //    getword(arr);
-        getLine(s);
-        printf("%s\n" , s);
-    //   printf("%s\n",arr);
-    //   getword(arr);
-    //   printf("%s\n",arr);
-        // printf("strted\n");
-        // char * s = "alon";
-        // char * t = "alon";
-        // int ans = similar(s,t,1);
-        // printf("%d\n" , ans);
-        // return 0;
+        wordIndex = 0;
+        lineIndex++;
+    }
+    return 0;
+}
+
+int main(){
+    char keyword[WORD] = "";
+    char flagArr [2] = "";
+    char buffer[MAX_FILE_LENGTH];
+    int index = 0;
+    int endIndex = 0;
+    int scan = '0';
+
+    // Read from the standard input stream until the end of file
+    while ((scan = getchar()) != EOF)
+    {
+        printf("%c",(char)scan);
+        buffer[endIndex] = (char)scan;
+        endIndex++;
+    }
+    unsigned long length = strlen(buffer);
+    //getting the first word from the buffer
+    getword(buffer , &index , keyword);
+    printf("keyword: %s\n", keyword );
+    //getting a' or 'b', to chose what to print (in string format)
+    getword(buffer , &index , flagArr);
+    char flag = flagArr[0];
+    printf("flag: %c\n",flag);
+
+    //********************************** got here ******************************
+    while (index < length) {
+        //printing all the lines in the text with the key-word.
+        if (flag == 'a') {
+            char line [LINE] = "";
+            getLine(buffer, &index, line);
+            if (isWordInLine(line, keyword)) {
+                printf("%s", line);
+            }
+
+            //printing all the lines in the text with the key-word.
+        } else {
+
 
         }
+    }
+}
+
+
+
+
 
 
 
