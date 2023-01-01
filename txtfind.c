@@ -112,7 +112,6 @@ int main(){
     // Read from the standard input stream until the end of file
     while ((scan = getchar()) != EOF)
     {
-        printf("%c",(char)scan);
         buffer[endIndex] = (char)scan;
         endIndex++;
     }
