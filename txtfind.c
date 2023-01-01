@@ -94,24 +94,11 @@ int similar (char * s, char* t, int n){
     return 0;
 }
 int isWordInLine(char * line, char* word){
-    char tempWord[WORD];
-    int lineIndex = 0;
-    int wordIndex;
-    while(line[lineIndex] != '\n' && line[lineIndex] != '\0'){
-        while(line[lineIndex] != ' ' && line[lineIndex] != '\n' && line[lineIndex] != '\0') {
-            tempWord[wordIndex] = line[lineIndex];
-            lineIndex++;
-            wordIndex++;
-            }
-        tempWord[wordIndex] = '\0';
-        if( similar(word , tempWord,0) == 1){
-            return 1;
-        }
 
-        wordIndex = 0;
-        lineIndex++;
+    if( substring(line,word,0,0, (int)strlen(line), (int)strlen(word)) == 1){
+        return 1;
     }
-    return 0;
+return 0;
 }
 
 int main(){
@@ -138,7 +125,6 @@ int main(){
     char flag = flagArr[0];
     printf("flag: %c\n",flag);
 
-    //********************************** got here ******************************
     while (index < length) {
         //printing all the lines in the text with the key-word.
         if (flag == 'a') {
@@ -148,9 +134,13 @@ int main(){
                 printf("%s", line);
             }
 
-            //printing all the lines in the text with the key-word.
+            //printing all the word in the text that similar to the key word or have only one letter extra than the key word.
         } else {
-
+            char word [WORD] = "";
+            getword(buffer, &index, word);
+            if( similar(word , keyword , 1) ){
+                printf("%s\n" , word);
+            }
 
         }
     }
