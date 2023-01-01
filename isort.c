@@ -51,7 +51,7 @@ int main() {
 	print_array(&arr[0], ARR_LENGTH);
     printf("\n");
    
-    return 1;
+    return 0;
 
 }
 
