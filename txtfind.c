@@ -104,13 +104,7 @@ return 0;
 int main(){
     char keyword[WORD] = "";
     char flagArr [2] = "";
-    char buffer[MAX_FILE_LENGTH] = "cat a\n"
-                                   "\n"
-                                   "this is a text file\n"
-                                   "looking for the word cat\n"
-                                   "the program should print also cats\n"
-                                   "and crat and lcat but it shouldn't\n"
-                                   "print the word caats";
+    char buffer[MAX_FILE_LENGTH];
     int index = 0;
     int endIndex = 0;
     int scan = 1;
