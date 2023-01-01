@@ -49,7 +49,7 @@ int main() {
 	insertion_sort(arr, ARR_LENGTH);
 
 	print_array(&arr[0], ARR_LENGTH);
-    printf("\n");
+    //printf("\n");
    
     return 0;
 
