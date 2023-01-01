@@ -119,11 +119,9 @@ int main(){
     unsigned long length = strlen(buffer);
     //getting the first word from the buffer
     getword(buffer , &index , keyword);
-    printf("keyword: %s\n", keyword );
     //getting a' or 'b', to chose what to print (in string format)
     getword(buffer , &index , flagArr);
     char flag = flagArr[0];
-    printf("flag: %c\n",flag);
 
     while (index < length) {
         //printing all the lines in the text with the key-word.
