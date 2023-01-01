@@ -104,7 +104,7 @@ return 0;
 int main(){
     char keyword[WORD] = "";
     char flagArr [2] = "";
-    char buffer[MAX_FILE_LENGTH];
+    char buffer[MAX_FILE_LENGTH+1];
     int index = 0;
     int endIndex = 0;
     int scan = 1;
@@ -115,6 +115,7 @@ int main(){
         buffer[endIndex] = (char)scan;
         endIndex++;
     }
+    buffer[endIndex] = '\0';
     unsigned long length = strlen(buffer);
     //getting the first word from the buffer
     getword(buffer , &index , keyword);
