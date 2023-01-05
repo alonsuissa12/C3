@@ -34,7 +34,10 @@ int substring(char *str1, char *str2, int start1, int start2, int end1 , int end
 
 }
 
-//getting the next word from the buffer, starting from 'index'
+/*
+getting the next word from the buffer, starting from 'index'
+and checking its length.
+*/
 int getword(char* buffer , int *index , char* w){
     int count = 0;
     char c = buffer[*index];
@@ -53,7 +56,10 @@ int getword(char* buffer , int *index , char* w){
     w[count -1] = '\0';
     return count;
 }
-
+/*
+The function receives a pointer to a string, row and index. The function will return
+the number of characters in the line the pointer is pointing to.
+*/
 int getLine(char *buffer , int * index, char *line){
  int count = 0;
     char c = ' ';
@@ -67,7 +73,12 @@ int getLine(char *buffer , int * index, char *line){
     return count;
 }
 
-// return 1 if its able
+
+/*The function will receive two strings t s and a number n. 
+The function will check if it is possible to get from the string S to the string t
+By putting n characters .
+return 1 if its able , 0 otherwise
+*/ 
 int similar (char * s, char* t, int n){
     int len_s = (int) strlen(s);
     if(n == 0 || ( len_s == strlen(t) ) ){
@@ -93,6 +104,10 @@ int similar (char * s, char* t, int n){
     }
     return 0;
 }
+/*
+The function will receive 2 strings representing a word and a line.
+ It will check if the word is in the line
+*/
 int isWordInLine(char * line, char* word){
 
     if( substring(line,word,0,0, (int)strlen(line), (int)strlen(word)) == 1){
