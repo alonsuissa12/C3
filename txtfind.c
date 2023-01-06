@@ -4,7 +4,7 @@
 
 #include "txtfind.h"
 
-// return 1 if str2 is substring of str1;
+// return 1 if str2 is substring of str1. return 0 otherwise.
 int substring(char *str1, char *str2, int start1, int start2, int end1 , int end2) {
     if (end1 < start1 || end2 < start2) {
         return 0;
@@ -35,8 +35,9 @@ int substring(char *str1, char *str2, int start1, int start2, int end1 , int end
 }
 
 /*
-getting the next word from the buffer, starting from 'index'
-and checking its length.
+ coping the next word from the buffer to 'w', starting from 'index'.
+ returning the num of chars scanned.
+  NOTE: the function will change the index!
 */
 int getword(char* buffer , int *index , char* w){
     int count = 0;
@@ -57,8 +58,9 @@ int getword(char* buffer , int *index , char* w){
     return count;
 }
 /*
-The function receives a pointer to a string, row and index. The function will return
-the number of characters in the line the pointer is pointing to.
+ coping the next word from the buffer to 'line', starting from 'index'.
+ returning the num of chars scanned.
+ NOTE: the function will change the index!
 */
 int getLine(char *buffer , int * index, char *line){
  int count = 0;

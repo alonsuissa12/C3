@@ -4,6 +4,7 @@
 # include <stdio.h>
 #include "isort.h"
 
+// sifting every element between i and 0 (including 0) in the array one cell to the right
 void shift_element(int* arr, int i){
     i--;
     while ( i >= 0){
@@ -11,7 +12,7 @@ void shift_element(int* arr, int i){
         i--;
     }
 }
-
+// sorting the array with insertion sort
 void insertion_sort(int *arr , int len){
      int i;
      for (i = 0; i < len  ; i++ ){
@@ -25,6 +26,7 @@ void insertion_sort(int *arr , int len){
      }
 
 }
+//printing the array
 void print_array(int *arr, int len) {
 	int i;
 	for(i = 0; i<len-1; i++) {
